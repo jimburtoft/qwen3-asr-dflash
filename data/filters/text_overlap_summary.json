@@ -1,0 +1,61 @@
+{
+ "librispeech_train": {
+  "rows": 281241,
+  "flagged": 101,
+  "flagged_pct": 0.036,
+  "by_eval_set": {
+   "librispeech_test": 97,
+   "cv17_en_test": 4
+  }
+ },
+ "libritts_r_train": {
+  "rows": 354693,
+  "flagged": 70,
+  "flagged_pct": 0.02,
+  "by_eval_set": {
+   "librispeech_test": 63,
+   "cv17_en_test": 6,
+   "ami_ihm_test": 1
+  }
+ },
+ "mls_train_sample60sh": {
+  "rows": 457968,
+  "flagged": 39,
+  "flagged_pct": 0.009,
+  "by_eval_set": {
+   "librispeech_test": 39
+  }
+ },
+ "cv17_en_train": {
+  "rows": 1101170,
+  "flagged": 83,
+  "flagged_pct": 0.008,
+  "by_eval_set": {
+   "cv17_en_test": 78,
+   "librispeech_test": 5
+  }
+ },
+ "voxpopuli_en_train": {
+  "rows": 182482,
+  "flagged": 17,
+  "flagged_pct": 0.009,
+  "by_eval_set": {
+   "voxpopuli_en_test": 16,
+   "cv17_en_test": 1
+  }
+ },
+ "ps_clean_train_sample60sh": {
+  "rows": 112033,
+  "flagged": 0,
+  "flagged_pct": 0.0,
+  "by_eval_set": {}
+ },
+ "ami_ihm_train": {
+  "rows": 108502,
+  "flagged": 7,
+  "flagged_pct": 0.006,
+  "by_eval_set": {
+   "ami_ihm_test": 7
+  }
+ }
+}

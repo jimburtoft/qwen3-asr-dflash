@@ -1,0 +1,416 @@
+{
+ "ckpt": "$Q3DF_WORK/runs/full_s1/step0200000/train_state.pt",
+ "step": 200000,
+ "serve_block_16": {
+  "ami:ihm:test": {
+   "tau": 6.3973,
+   "top1": 0.7665,
+   "blocks": 1042
+  },
+  "multilingual_librispeech:dutch:test": {
+   "tau": 3.823,
+   "top1": 0.4471,
+   "blocks": 4809
+  },
+  "multilingual_librispeech:french:test": {
+   "tau": 4.0109,
+   "top1": 0.4549,
+   "blocks": 4511
+  },
+  "multilingual_librispeech:german:test": {
+   "tau": 4.1716,
+   "top1": 0.4643,
+   "blocks": 4261
+  },
+  "multilingual_librispeech:italian:test": {
+   "tau": 3.657,
+   "top1": 0.433,
+   "blocks": 3875
+  },
+  "multilingual_librispeech:polish:test": {
+   "tau": 3.0931,
+   "top1": 0.3549,
+   "blocks": 5511
+  },
+  "multilingual_librispeech:portuguese:test": {
+   "tau": 3.3928,
+   "top1": 0.3954,
+   "blocks": 4160
+  },
+  "multilingual_librispeech:spanish:test": {
+   "tau": 4.6526,
+   "top1": 0.5052,
+   "blocks": 3984
+  },
+  "voxpopuli:cs:test": {
+   "tau": 2.8878,
+   "top1": 0.3368,
+   "blocks": 4296
+  },
+  "voxpopuli:de:test": {
+   "tau": 4.212,
+   "top1": 0.4805,
+   "blocks": 2585
+  },
+  "voxpopuli:en:test": {
+   "tau": 7.4724,
+   "top1": 0.7521,
+   "blocks": 1954
+  },
+  "voxpopuli:es:test": {
+   "tau": 4.8899,
+   "top1": 0.5269,
+   "blocks": 3144
+  },
+  "voxpopuli:fi:test": {
+   "tau": 2.4184,
+   "top1": 0.291,
+   "blocks": 3822
+  },
+  "voxpopuli:fr:test": {
+   "tau": 4.4111,
+   "top1": 0.4795,
+   "blocks": 2705
+  },
+  "voxpopuli:hu:test": {
+   "tau": 2.7028,
+   "top1": 0.3162,
+   "blocks": 3984
+  },
+  "voxpopuli:it:test": {
+   "tau": 4.092,
+   "top1": 0.4418,
+   "blocks": 3542
+  },
+  "voxpopuli:nl:test": {
+   "tau": 4.0601,
+   "top1": 0.4625,
+   "blocks": 2795
+  },
+  "voxpopuli:pl:test": {
+   "tau": 3.3111,
+   "top1": 0.3837,
+   "blocks": 2954
+  },
+  "voxpopuli:ro:test": {
+   "tau": 2.4188,
+   "top1": 0.2718,
+   "blocks": 3658
+  },
+  "common_voice_17_0:ar:test": {
+   "tau": 2.795,
+   "top1": 0.4003,
+   "blocks": 1078
+  },
+  "common_voice_17_0:cs:test": {
+   "tau": 2.9522,
+   "top1": 0.3989,
+   "blocks": 1506
+  },
+  "common_voice_17_0:da:test": {
+   "tau": 1.8304,
+   "top1": 0.2811,
+   "blocks": 1238
+  },
+  "common_voice_17_0:de:test": {
+   "tau": 3.7251,
+   "top1": 0.4754,
+   "blocks": 1368
+  },
+  "common_voice_17_0:el:test": {
+   "tau": 1.6808,
+   "top1": 0.1999,
+   "blocks": 2187
+  },
+  "common_voice_17_0:en:test": {
+   "tau": 5.7715,
+   "top1": 0.7505,
+   "blocks": 941
+  },
+  "common_voice_17_0:es:test": {
+   "tau": 4.4604,
+   "top1": 0.5813,
+   "blocks": 1199
+  },
+  "common_voice_17_0:fa:test": {
+   "tau": 2.6147,
+   "top1": 0.3544,
+   "blocks": 1534
+  },
+  "common_voice_17_0:fi:test": {
+   "tau": 2.6469,
+   "top1": 0.363,
+   "blocks": 1518
+  },
+  "common_voice_17_0:fr:test": {
+   "tau": 3.9327,
+   "top1": 0.4954,
+   "blocks": 1277
+  },
+  "common_voice_17_0:hi:test": {
+   "tau": 1.7666,
+   "top1": 0.1757,
+   "blocks": 2729
+  },
+  "common_voice_17_0:hu:test": {
+   "tau": 2.7305,
+   "top1": 0.3684,
+   "blocks": 1718
+  },
+  "common_voice_17_0:id:test": {
+   "tau": 2.0567,
+   "top1": 0.3298,
+   "blocks": 970
+  },
+  "common_voice_17_0:it:test": {
+   "tau": 3.92,
+   "top1": 0.5149,
+   "blocks": 1337
+  },
+  "common_voice_17_0:ja:test": {
+   "tau": 2.8733,
+   "top1": 0.3898,
+   "blocks": 1255
+  },
+  "common_voice_17_0:ko:test": {
+   "tau": 1.1846,
+   "top1": 0.0825,
+   "blocks": 1658
+  },
+  "common_voice_17_0:mk:test": {
+   "tau": 1.8433,
+   "top1": 0.1952,
+   "blocks": 1857
+  },
+  "common_voice_17_0:nl:test": {
+   "tau": 4.2318,
+   "top1": 0.5585,
+   "blocks": 1234
+  },
+  "common_voice_17_0:pl:test": {
+   "tau": 3.4037,
+   "top1": 0.4535,
+   "blocks": 1387
+  },
+  "common_voice_17_0:pt:test": {
+   "tau": 3.7393,
+   "top1": 0.5439,
+   "blocks": 913
+  },
+  "common_voice_17_0:ro:test": {
+   "tau": 2.5934,
+   "top1": 0.327,
+   "blocks": 1306
+  },
+  "common_voice_17_0:ru:test": {
+   "tau": 3.2617,
+   "top1": 0.4129,
+   "blocks": 1536
+  },
+  "common_voice_17_0:sv-SE:test": {
+   "tau": 2.9225,
+   "top1": 0.4235,
+   "blocks": 1123
+  },
+  "common_voice_17_0:th:test": {
+   "tau": 3.7566,
+   "top1": 0.452,
+   "blocks": 1401
+  },
+  "common_voice_17_0:tr:test": {
+   "tau": 3.0398,
+   "top1": 0.4225,
+   "blocks": 1056
+  },
+  "common_voice_17_0:vi:test": {
+   "tau": 1.4335,
+   "top1": 0.2277,
+   "blocks": 819
+  },
+  "common_voice_17_0:yue:test": {
+   "tau": 2.1209,
+   "top1": 0.3303,
+   "blocks": 935
+  },
+  "common_voice_17_0:zh-CN:test": {
+   "tau": 4.1021,
+   "top1": 0.626,
+   "blocks": 970
+  },
+  "common_voice_17_0:zh-HK:test": {
+   "tau": 2.0619,
+   "top1": 0.2974,
+   "blocks": 1018
+  },
+  "fleurs:ar_eg:test": {
+   "tau": 2.3974,
+   "top1": 0.2679,
+   "blocks": 2723
+  },
+  "fleurs:cmn_hans_cn:test": {
+   "tau": 3.9879,
+   "top1": 0.4854,
+   "blocks": 1907
+  },
+  "fleurs:cs_cz:test": {
+   "tau": 2.4869,
+   "top1": 0.2906,
+   "blocks": 3738
+  },
+  "fleurs:da_dk:test": {
+   "tau": 1.6152,
+   "top1": 0.1835,
+   "blocks": 3137
+  },
+  "fleurs:de_de:test": {
+   "tau": 3.8865,
+   "top1": 0.4465,
+   "blocks": 2890
+  },
+  "fleurs:el_gr:test": {
+   "tau": 1.4933,
+   "top1": 0.1283,
+   "blocks": 8368
+  },
+  "fleurs:en_us:test": {
+   "tau": 7.1197,
+   "top1": 0.7079,
+   "blocks": 1989
+  },
+  "fleurs:es_419:test": {
+   "tau": 4.5024,
+   "top1": 0.4995,
+   "blocks": 2880
+  },
+  "fleurs:fa_ir:test": {
+   "tau": 2.6081,
+   "top1": 0.3069,
+   "blocks": 4511
+  },
+  "fleurs:fi_fi:test": {
+   "tau": 2.3326,
+   "top1": 0.2691,
+   "blocks": 3849
+  },
+  "fleurs:fil_ph:test": {
+   "tau": 1.5749,
+   "top1": 0.1639,
+   "blocks": 3611
+  },
+  "fleurs:fr_fr:test": {
+   "tau": 3.8433,
+   "top1": 0.4323,
+   "blocks": 2993
+  },
+  "fleurs:hi_in:test": {
+   "tau": 1.661,
+   "top1": 0.1446,
+   "blocks": 7629
+  },
+  "fleurs:hu_hu:test": {
+   "tau": 2.2628,
+   "top1": 0.2624,
+   "blocks": 3854
+  },
+  "fleurs:id_id:test": {
+   "tau": 1.9697,
+   "top1": 0.2163,
+   "blocks": 2774
+  },
+  "fleurs:it_it:test": {
+   "tau": 3.9936,
+   "top1": 0.4574,
+   "blocks": 2961
+  },
+  "fleurs:ja_jp:test": {
+   "tau": 2.5111,
+   "top1": 0.3002,
+   "blocks": 2569
+  },
+  "fleurs:ko_kr:test": {
+   "tau": 1.1956,
+   "top1": 0.0646,
+   "blocks": 2873
+  },
+  "fleurs:mk_mk:test": {
+   "tau": 1.7621,
+   "top1": 0.1589,
+   "blocks": 4279
+  },
+  "fleurs:ms_my:test": {
+   "tau": 1.7788,
+   "top1": 0.1792,
+   "blocks": 2907
+  },
+  "fleurs:nl_nl:test": {
+   "tau": 3.3821,
+   "top1": 0.4073,
+   "blocks": 3067
+  },
+  "fleurs:pl_pl:test": {
+   "tau": 2.6627,
+   "top1": 0.313,
+   "blocks": 3291
+  },
+  "fleurs:pt_br:test": {
+   "tau": 3.48,
+   "top1": 0.4165,
+   "blocks": 2756
+  },
+  "fleurs:ro_ro:test": {
+   "tau": 2.3891,
+   "top1": 0.2731,
+   "blocks": 3410
+  },
+  "fleurs:ru_ru:test": {
+   "tau": 2.7451,
+   "top1": 0.3107,
+   "blocks": 3319
+  },
+  "fleurs:sv_se:test": {
+   "tau": 2.4828,
+   "top1": 0.3043,
+   "blocks": 2964
+  },
+  "fleurs:th_th:test": {
+   "tau": 2.9973,
+   "top1": 0.3087,
+   "blocks": 4526
+  },
+  "fleurs:tr_tr:test": {
+   "tau": 2.5351,
+   "top1": 0.2798,
+   "blocks": 2949
+  },
+  "fleurs:vi_vn:test": {
+   "tau": 1.4169,
+   "top1": 0.1212,
+   "blocks": 2636
+  },
+  "fleurs:yue_hant_hk:test": {
+   "tau": 2.1565,
+   "top1": 0.2652,
+   "blocks": 2281
+  },
+  "librispeech_asr:all:test.clean": {
+   "tau": 7.8195,
+   "top1": 0.7737,
+   "blocks": 1806
+  },
+  "librispeech_asr:all:test.other": {
+   "tau": 7.3459,
+   "top1": 0.7464,
+   "blocks": 1622
+  },
+  "english": {
+   "tau": 7.1516,
+   "top1": 0.7466,
+   "blocks": 9354
+  },
+  "all": {
+   "tau": 3.0549,
+   "top1": 0.3417,
+   "blocks": 213729
+  }
+ }
+}

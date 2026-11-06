@@ -1,0 +1,7 @@
+tmp/
+*.safetensors
+*.pt
+venv*/
+work/
+__pycache__/
+.pytest_cache/

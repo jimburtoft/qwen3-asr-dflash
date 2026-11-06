@@ -1,0 +1,12 @@
+# Trainium2: install INTO the public Neuron DLAMI torch-neuronx venv (SDK 2.33):
+#   source /opt/aws_neuronx_venv_torch_neuronx_2_14_0/bin/activate
+#   pip install -r requirements-neuron.txt
+# None of these pull torch, so the venv's torch 2.14.0 / torch-neuronx 2.14.3 stay as shipped.
+# Validated on DLAMI "Deep Learning AMI Neuron (Ubuntu 24.04) SDK 2.33.0" with transformers 5.20.2,
+transformers>=5.13,<6
+safetensors>=0.5
+huggingface_hub>=0.30
+pyarrow>=18
+soundfile>=0.12
+librosa>=0.10
+pytest>=8

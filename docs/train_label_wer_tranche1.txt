@@ -1,0 +1,8 @@
+fsicoli/common_voice_17_0:en     train                    clips  40000 finished 100.000%  max_resp   61  WER 5.33%
+mythicinfinity/libritts_r:all    train.clean.100          clips   1614 finished 100.000%  max_resp   90  WER 2.40%
+mythicinfinity/libritts_r:all    train.clean.360          clips   5710 finished 100.000%  max_resp  100  WER 2.54%
+mythicinfinity/libritts_r:all    train.other.500          clips   7676 finished 100.000%  max_resp  102  WER 2.93%
+openslr/librispeech_asr:all      train.clean.100          clips   2720 finished 100.000%  max_resp   81  WER 1.87%
+openslr/librispeech_asr:all      train.clean.360          clips   9843 finished 100.000%  max_resp   93  WER 2.00%
+openslr/librispeech_asr:all      train.other.500          clips  12437 finished 100.000%  max_resp   97  WER 2.20%
+parler-tts/mls_eng:default       train                    clips  20000 finished 100.000%  max_resp  114  WER 3.55%

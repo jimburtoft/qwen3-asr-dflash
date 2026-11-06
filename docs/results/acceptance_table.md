@@ -1,0 +1,87 @@
+# Held-out acceptance (tau = mean accepted + 1, block 16, every response position as anchor, 64 clips per set)
+
+| held-out set | release (s2b 16k) | stage 1 (200k) | blocks |
+|---|---|---|---|
+| **English (6 sets)** | **6.89** | 7.15 | 9354 |
+| **all 80 short sets** | **2.95** | 3.05 | 213729 |
+| **AMI long-form (31-300 s)** | **4.23** | 1.17 | 15129 |
+| librispeech_asr:all:test.clean | 7.57 | 7.82 | 1806 |
+| voxpopuli:en:test | 7.18 | 7.47 | 1954 |
+| librispeech_asr:all:test.other | 7.00 | 7.35 | 1622 |
+| fleurs:en_us:test | 6.79 | 7.12 | 1989 |
+| ami:ihm:test | 6.20 | 6.40 | 1042 |
+| common_voice_17_0:en:test | 5.73 | 5.77 | 941 |
+| voxpopuli:es:test | 4.67 | 4.89 | 3144 |
+| multilingual_librispeech:spanish:test | 4.43 | 4.65 | 3984 |
+| fleurs:es_419:test | 4.35 | 4.50 | 2880 |
+| common_voice_17_0:es:test | 4.33 | 4.46 | 1199 |
+| voxpopuli:fr:test | 4.31 | 4.41 | 2705 |
+| voxpopuli:de:test | 4.07 | 4.21 | 2585 |
+| common_voice_17_0:nl:test | 4.06 | 4.23 | 1234 |
+| multilingual_librispeech:german:test | 3.99 | 4.17 | 4261 |
+| common_voice_17_0:zh-CN:test | 3.96 | 4.10 | 970 |
+| voxpopuli:nl:test | 3.92 | 4.06 | 2795 |
+| multilingual_librispeech:french:test | 3.91 | 4.01 | 4511 |
+| voxpopuli:it:test | 3.89 | 4.09 | 3542 |
+| fleurs:cmn_hans_cn:test | 3.86 | 3.99 | 1907 |
+| fleurs:it_it:test | 3.81 | 3.99 | 2961 |
+| common_voice_17_0:fr:test | 3.78 | 3.93 | 1277 |
+| fleurs:de_de:test | 3.75 | 3.89 | 2890 |
+| fleurs:fr_fr:test | 3.73 | 3.84 | 2993 |
+| common_voice_17_0:it:test | 3.72 | 3.92 | 1337 |
+| multilingual_librispeech:dutch:test | 3.67 | 3.82 | 4809 |
+| common_voice_17_0:pt:test | 3.64 | 3.74 | 913 |
+| common_voice_17_0:de:test | 3.61 | 3.73 | 1368 |
+| common_voice_17_0:th:test | 3.61 | 3.76 | 1401 |
+| multilingual_librispeech:italian:test | 3.48 | 3.66 | 3875 |
+| fleurs:pt_br:test | 3.37 | 3.48 | 2756 |
+| common_voice_17_0:pl:test | 3.27 | 3.40 | 1387 |
+| fleurs:nl_nl:test | 3.26 | 3.38 | 3067 |
+| multilingual_librispeech:portuguese:test | 3.24 | 3.39 | 4160 |
+| common_voice_17_0:ru:test | 3.20 | 3.26 | 1536 |
+| voxpopuli:pl:test | 3.15 | 3.31 | 2954 |
+| multilingual_librispeech:polish:test | 2.96 | 3.09 | 5511 |
+| common_voice_17_0:tr:test | 2.96 | 3.04 | 1056 |
+| fleurs:th_th:test | 2.90 | 3.00 | 4526 |
+| common_voice_17_0:sv-SE:test | 2.83 | 2.92 | 1123 |
+| common_voice_17_0:cs:test | 2.80 | 2.95 | 1506 |
+| voxpopuli:cs:test | 2.79 | 2.89 | 4296 |
+| common_voice_17_0:ja:test | 2.78 | 2.87 | 1255 |
+| common_voice_17_0:ar:test | 2.67 | 2.79 | 1078 |
+| fleurs:ru_ru:test | 2.66 | 2.75 | 3319 |
+| common_voice_17_0:hu:test | 2.60 | 2.73 | 1718 |
+| common_voice_17_0:fa:test | 2.58 | 2.61 | 1534 |
+| fleurs:pl_pl:test | 2.58 | 2.66 | 3291 |
+| voxpopuli:hu:test | 2.57 | 2.70 | 3984 |
+| common_voice_17_0:fi:test | 2.56 | 2.65 | 1518 |
+| fleurs:fa_ir:test | 2.53 | 2.61 | 4511 |
+| common_voice_17_0:ro:test | 2.46 | 2.59 | 1306 |
+| fleurs:sv_se:test | 2.45 | 2.48 | 2964 |
+| fleurs:tr_tr:test | 2.42 | 2.54 | 2949 |
+| fleurs:cs_cz:test | 2.41 | 2.49 | 3738 |
+| fleurs:ja_jp:test | 2.39 | 2.51 | 2569 |
+| voxpopuli:fi:test | 2.35 | 2.42 | 3822 |
+| fleurs:ar_eg:test | 2.32 | 2.40 | 2723 |
+| voxpopuli:ro:test | 2.32 | 2.42 | 3658 |
+| fleurs:ro_ro:test | 2.31 | 2.39 | 3410 |
+| fleurs:fi_fi:test | 2.25 | 2.33 | 3849 |
+| fleurs:hu_hu:test | 2.19 | 2.26 | 3854 |
+| fleurs:yue_hant_hk:test | 2.11 | 2.16 | 2281 |
+| common_voice_17_0:yue:test | 2.11 | 2.12 | 935 |
+| common_voice_17_0:zh-HK:test | 2.02 | 2.06 | 1018 |
+| common_voice_17_0:id:test | 1.99 | 2.06 | 970 |
+| fleurs:id_id:test | 1.95 | 1.97 | 2774 |
+| common_voice_17_0:da:test | 1.82 | 1.83 | 1238 |
+| common_voice_17_0:mk:test | 1.81 | 1.84 | 1857 |
+| fleurs:mk_mk:test | 1.73 | 1.76 | 4279 |
+| fleurs:ms_my:test | 1.72 | 1.78 | 2907 |
+| common_voice_17_0:el:test | 1.66 | 1.68 | 2187 |
+| common_voice_17_0:hi:test | 1.65 | 1.77 | 2729 |
+| fleurs:hi_in:test | 1.61 | 1.66 | 7629 |
+| fleurs:da_dk:test | 1.60 | 1.62 | 3137 |
+| fleurs:fil_ph:test | 1.54 | 1.57 | 3611 |
+| fleurs:el_gr:test | 1.48 | 1.49 | 8368 |
+| common_voice_17_0:vi:test | 1.42 | 1.43 | 819 |
+| fleurs:vi_vn:test | 1.40 | 1.42 | 2636 |
+| fleurs:ko_kr:test | 1.19 | 1.20 | 2873 |
+| common_voice_17_0:ko:test | 1.17 | 1.18 | 1658 |

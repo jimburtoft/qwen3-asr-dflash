@@ -1,0 +1,6 @@
+{
+ "drop_train_meetings": [
+  "IB4005"
+ ],
+ "reason": "speakers FIE038 and MIO036 appear in both IB4005 (train, 538 ihm clips) and the validation split"
+}

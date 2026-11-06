@@ -1,0 +1,32 @@
+{
+ "train": {
+  "rows": 1101170,
+  "speakers": 37501,
+  "sentences": 1101170
+ },
+ "dev": {
+  "rows": 16393,
+  "speakers": 6683,
+  "sentences": 16393
+ },
+ "test": {
+  "rows": 16393,
+  "speakers": 11828,
+  "sentences": 16393
+ },
+ "train_vs_dev": {
+  "clients": 0,
+  "sentences": 0,
+  "paths": 0
+ },
+ "train_vs_test": {
+  "clients": 0,
+  "sentences": 0,
+  "paths": 0
+ },
+ "dev_vs_test": {
+  "clients": 0,
+  "sentences": 0,
+  "paths": 0
+ }
+}

@@ -1,0 +1,12 @@
+# CPU or CUDA: model code, tests, offline checks, HF-reference labels, and (CUDA) the training scripts with --device cuda.
+torch>=2.12
+transformers>=5.13,<6
+safetensors>=0.5
+huggingface_hub>=0.30
+pyarrow>=18
+numpy>=1.26
+soundfile>=0.12
+librosa>=0.10
+datasets>=3.0
+accelerate>=1.0
+pytest>=8

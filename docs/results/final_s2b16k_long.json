@@ -1,0 +1,16 @@
+{
+ "ckpt": "$Q3DF_WORK/runs/s2b/step0016000/train_state.pt",
+ "step": 16000,
+ "serve_block_16": {
+  "longform": {
+   "tau": 4.2328,
+   "top1": 0.3638,
+   "blocks": 15129
+  },
+  "all": {
+   "tau": 4.2328,
+   "top1": 0.3638,
+   "blocks": 15129
+  }
+ }
+}

@@ -1,0 +1,58 @@
+Qwen3-ASR-1.7B DFlash draft model and training code
+Copyright 2026 The qwen3-asr-dflash contributors
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The training code is adapted from jimburtoft/voxtral-dflash (Apache-2.0),
+https://github.com/jimburtoft/voxtral-dflash.
+
+-------------------------------------------------------------------------------
+Target model
+-------------------------------------------------------------------------------
+The draft model was trained on greedy outputs and hidden states of
+Qwen/Qwen3-ASR-1.7B (revision 7278e1e70fe206f11671096ffdd38061171dd6e5; the same
+weights as Qwen/Qwen3-ASR-1.7B-hf revision bcd2b5b7f32b480ab5790554cfa8347f246a14f3),
+Copyright Alibaba Qwen team, licensed under the Apache License, Version 2.0.
+https://huggingface.co/Qwen/Qwen3-ASR-1.7B
+The draft is used together with the target model's own token embedding and LM head,
+which are loaded from the target checkpoint and are not modified or redistributed.
+
+Method: DFlash block-diffusion speculative drafting, arXiv:2602.06036. The checkpoint
+uses the public DFlash checkpoint format (z-lab/dflash, MIT License).
+
+-------------------------------------------------------------------------------
+Training data (audio and transcripts; no source audio is redistributed)
+-------------------------------------------------------------------------------
+- LibriSpeech ASR corpus (c) 2014 Vassil Panayotov, CC BY 4.0
+  (https://www.openslr.org/12), derived from LibriVox public-domain recordings.
+  Panayotov et al., ICASSP 2015. HF: openslr/librispeech_asr.
+- LibriTTS-R, CC BY 4.0 (https://www.openslr.org/141). Koizumi et al., 2023;
+  derived from LibriTTS (Zen et al., 2019). HF: mythicinfinity/libritts_r.
+- Multilingual LibriSpeech (English, German, French, Spanish, Italian, Portuguese,
+  Dutch, Polish), CC BY 4.0 (https://www.openslr.org/94). Pratap et al., 2020.
+  HF: parler-tts/mls_eng, facebook/multilingual_librispeech.
+- Common Voice Corpus 17.0, Mozilla Foundation, CC0 1.0. Ardila et al., LREC 2020.
+  HF: fsicoli/common_voice_17_0 (English and 18 other languages).
+  No attempt was made to identify Common Voice contributors, and no contributor
+  identifiers or demographic data are published. Users of this model must not
+  attempt to determine the identity of speakers in Common Voice, LibriSpeech or
+  Multilingual LibriSpeech.
+- VoxPopuli (English, German, French, Spanish, Italian, Dutch, Polish, Romanian,
+  Hungarian, Czech, Finnish), CC0. Wang et al., ACL 2021. HF: facebook/voxpopuli.
+  Raw data (c) European Union, source: European Parliament
+  (https://www.europarl.europa.eu). We acknowledge the European Parliament for
+  creating and sharing these materials.
+- The People's Speech (clean configuration, CC BY / public-domain sources only),
+  MLCommons, CC BY 4.0. Galvez et al., NeurIPS 2021 Datasets and Benchmarks.
+  HF: MLCommons/peoples_speech. Each source recording keeps its own license
+  (CC BY 2.0 / 3.0, CC0, public domain, or US Government work); per-source
+  creators, licenses and source URLs are listed in ATTRIBUTION_peoples_speech.csv.
+  No share-alike (CC BY-SA), non-commercial or no-derivatives sources were used.
+- AMI Meeting Corpus, AMI Consortium, CC BY 4.0
+  (https://groups.inf.ed.ac.uk/ami/corpus). Carletta, 2006. HF: edinburghcstr/ami.
+
+Evaluation additionally used FLEURS (29 language test sets), CC BY 4.0, Conneau et al.,
+2022 (HF: google/fleurs). FLEURS was not used for training.
+
+Dataset revisions, configurations, splits and filters are documented in
+data/LICENSES.md of the code repository.
