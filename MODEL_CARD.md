@@ -181,9 +181,14 @@ held-out clips per set:
 | ALL | 600 | 568 | 5.66 | 5.74 | 167.5 | 88.9 | 1.88x | 158.3 | 4.23 |
 
 
-568 / 600 transcripts are identical to the no-draft run; the rest differ by bf16 rounding in the
-16-token verify step (mostly one-word near-ties on hard audio). WER uses a lowercase / punctuation
-normaliser (CER for Chinese and Japanese).
+568 / 600 transcripts are identical to the no-draft run. The others are bf16 near-ties of the
+target's own multi-token verify graph, not draft errors: with an untrained draft that is never accepted
+(tau 1.00) 14 / 600 still differ, and the target alone already gives different transcripts at TP=1 vs TP=4
+on 43 / 600 clips. WER uses a lowercase / punctuation normaliser (CER for Chinese and Japanese).
+
+At TP=1 on the same branch: mean latency 335.5 -> 156.6 ms (2.14x), tau 4.26, 565 / 600 identical.
+(vllm-neuron 0.29.0.1.2.0 as released is not lossless with DFlash at TP=1 -- also for the public
+Qwen3-8B + z-lab DFlash pair -- because of decode-mask layout issues fixed on the branch above.)
 
 Concurrency (LibriSpeech test-clean, 200 clips, `--max-num-seqs C`): real-time factor 133.8x -> 199.4x
 at C = 4 (1.49x), 237.3x -> 269.4x at C = 16 (1.14x). The benefit shrinks as the batch grows.
@@ -200,8 +205,9 @@ vllm serve Qwen/Qwen3-ASR-1.7B \
 - **Upstream vLLM (>= 0.33):** `Qwen3ASRForConditionalGeneration` exposes the auxiliary hidden states
   DFlash needs. Checked with the `vllm/vllm-openai-cpu:v0.33.0` image on 18 real-audio clips: greedy
   output identical with and without the draft. On the **CPU** platform the acceptance is low (1.3)
-  because vLLM's grouped context-key RMSNorm applies the first draft layer's `k_norm` to all layers
-  there; with a per-layer k_norm the same run gives 4.7. GPU builds were not tested.
+  because vLLM's CPU `rms_norm` kernel ignores the per-layer rows of DFlash's grouped context-key norm;
+  fixed in [vllm-project/vllm#66168](https://github.com/vllm-project/vllm/pull/66168) (with the fix:
+  4.76, still lossless). GPU builds were not tested.
 - **Trainium (vllm-neuron):** use the branch above (TP=4 shown; add
   `"encoder_neuron_config": {"encoder_cache_num_blocks": 2048, ...}` to `--additional-config` on that
   branch, see the code repository's `eval/vllm_neuron_serve_bench.py` for the full command).

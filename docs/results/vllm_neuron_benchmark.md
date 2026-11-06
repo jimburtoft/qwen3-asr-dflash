@@ -43,3 +43,20 @@ MLS fr 5.53 -> 6.23). On upstream vLLM (CPU, fp32/bf16 kernels) the same draft w
 
 Spec decoding still helps at C=16 on this device but the gain shrinks with batch size (the verify
 step costs ~16x the tokens of a decode step); at higher concurrency serve without the draft.
+
+## Follow-up (2026-11-06): TP=1, determinism and the source of the differences
+
+| TP | plain mean ms | DFlash mean ms | speedup | tau | identical spec vs plain |
+|---|---|---|---|---|---|
+| 1 | 335.5 | 156.6 | 2.14x | 4.26 | 565 / 600 |
+| 4 | 169.1 | 91.8 | 1.84x | 4.23 | 568 / 600 |
+
+- Reruns are deterministic (600/600 identical to the first run, plain and DFlash).
+- Plain TP=1 vs plain TP=4: 557 / 600 identical (the target alone depends on the layout).
+- Untrained draft (never accepted, tau 1.00), TP=4: 586 / 600 identical to plain -> the differences come from
+  the target's 16-token verify graph, not from accepted draft tokens.
+- HF transformers fp32 logit margin at the first differing token (32 clips): median 0.36, p90 1.03; HF agrees
+  with the plain run in 20 and with the DFlash run in 12 (`divergence_margins.json`).
+- Released vllm-neuron 0.29.0.1.2.0 at TP=1 is not lossless with DFlash (also for Qwen3-8B +
+  z-lab/Qwen3-8B-DFlash-b16); the fork branches `dflash-tp1-lossless-0.29` and `qwen3-asr/dflash` are.
+Raw: `bench2/`.

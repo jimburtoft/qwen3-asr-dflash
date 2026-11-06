@@ -50,3 +50,12 @@ Raw logs were kept with the run.
   - with a per-layer k_norm loop (`--patch-knorm 1`, the intended computation): **4.70**
     (accepted per position: 130, 108, 82, 60, 50, 41, 34, 28, 24, 16, 11, 8, 8, 6, 5 of 165 drafts).
   - GPU builds use a different kernel path and were not tested here (GPU use is out of scope).
+
+## vLLM CPU fix (vllm-project/vllm#66168)
+
+Root cause of the 1.32: `csrc/cpu/layernorm.cpp` `rms_norm` ignored the rows of a 2D weight (always row 0),
+while the CUDA kernel selects the row by the outermost input index; DFlash's fused context-key norm passes a
+stacked `[L, head_dim]` weight. Fix: same 2D-weight semantics and shape checks in the CPU kernel; the existing
+`tests/kernels/core/test_batched_weight_rms_norm.py` now runs on CPU (v0.33.0: 7 failed; fix: 10 passed, 3
+skipped). Real audio, same 18 clips, stock model code, built from the PR branch with `docker/Dockerfile.cpu`:
+**18/18 identical, tau 4.76** (accepted per position 133, 112, 84, 61, 54, 46, 32, 25, 18, 15, 11, 9, 8, 4, 1 of 163 drafts).
