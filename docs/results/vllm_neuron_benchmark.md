@@ -27,8 +27,9 @@
 | voxpopuli:en:test | 50 | 46 | 6.46 | 6.63 | 144.8 | 63.3 | 2.29x | 93.6 | 6.64 |
 | ALL | 600 | 568 | 5.66 | 5.74 | 167.5 | 88.9 | 1.88x | 158.3 | 4.23 |
 
-568 / 600 transcripts are identical. The 32 differences are bf16 verify-graph numerics (a 16-token verify
-pass vs 1-token decode, different reduction order), mostly one-word near-ties on hard audio (AMI, MLS);
+568 / 600 transcripts are identical. The 32 differences come from the target's 16-token verify step, not
+the draft (see the follow-up section); most are one-word close calls on hard audio (AMI, MLS), but not all
+(largest HF fp32 gap 4 logits); root cause under investigation;
 WER over all 600 clips is 5.66 % plain vs 5.74 % DFlash (per set it moves both ways: zh-CN 5.72 -> 5.22,
 MLS fr 5.53 -> 6.23). On upstream vLLM (CPU, fp32/bf16 kernels) the same draft was token-identical on
 18/18 clips.

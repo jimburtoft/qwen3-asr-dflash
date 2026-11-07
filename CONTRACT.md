@@ -96,4 +96,4 @@ layers.{i}.mlp.down_proj.weight         [2048, 6144]
 | loader | result |
 |---|---|
 | upstream vLLM v0.33.0 (CPU image), target = `Qwen/Qwen3-ASR-1.7B` (multimodal, real audio) | greedy spec == plain on 18 / 18 clips (see `docs/loader_checks.md` for the CPU k_norm note) |
-| vllm-neuron, branch `jimburtoft/vllm-neuron@qwen3-asr/dflash`, trn2.3xlarge TP=4 | loads and serves; 568 / 600 held-out transcripts identical to no-draft (bf16 verify-step near-ties), served tau 4.23 |
+| vllm-neuron, branch `jimburtoft/vllm-neuron@qwen3-asr/dflash`, trn2.3xlarge TP=4 | loads and serves; 568 / 600 held-out transcripts identical to no-draft (differences from the target's verify step, not the draft; see `docs/results/vllm_neuron_benchmark.md`), served tau 4.23 |
