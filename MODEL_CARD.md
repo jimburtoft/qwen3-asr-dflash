@@ -183,10 +183,9 @@ held-out clips per set:
 
 568 / 600 transcripts are identical to the no-draft run. Two causes, neither in the draft:
 
-- **Argmax tie-breaking (fixed upstream-pending).** vllm-neuron's on-device greedy argmax picks among exactly
-  equal bf16 logits differently for a 1-token decode step and a 16-token verify step. With the fix
-  ([vllm-project/vllm-neuron#91](https://github.com/vllm-project/vllm-neuron/pull/91), branch
-  `jimburtoft/vllm-neuron@qwen3-asr/argmax-tie-break`), a draft that is never accepted gives 600 / 600
+- **Argmax tie-breaking (fixed on the serving branch).** vllm-neuron's on-device greedy argmax picks among
+  exactly equal bf16 logits differently for a 1-token decode step and a 16-token verify step. With the fix
+  (included in `jimburtoft/vllm-neuron@qwen3-asr/dflash`), a draft that is never accepted gives 600 / 600
   identical transcripts (14 differed before).
 - **bf16 rounding of accepted positions (expected).** Positions computed inside a multi-token verify step after
   accepted draft tokens differ from 1-token decode by about one bf16 step (0.25-0.44 logits); when the top two

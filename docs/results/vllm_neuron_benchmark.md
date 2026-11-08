@@ -69,7 +69,7 @@ Logit dumps (`neuron_config.debug_logits_dir`, `eval/logit_dump_compare.py`):
    divergence the two candidate tokens are **exactly tied** in bf16 (e.g. 25.25 vs 25.25). vllm-neuron's NKI
    `cascaded_max` picks among equal maxima by its stage layout, which depends on the row count (1 vs 16).
    Kernel test, 40 random two-way ties on a 37,984-column shard: 1-row and 16-row picks differ in 4/40 before,
-   0/40 after the fix. Fix: [vllm-project/vllm-neuron#91](https://github.com/vllm-project/vllm-neuron/pull/91).
+   0/40 after the fix. Fix: included in the `jimburtoft/vllm-neuron@qwen3-asr/dflash` branch.
 2. **Accepted positions in bf16.** Positions computed in a 16-row verify pass after accepted drafts differ from
    1-row decode by 0.25-0.44 (one bf16 step at |logit| ~30); near-ties then flip. Expected for bf16 speculative
    decoding.
