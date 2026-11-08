@@ -181,12 +181,19 @@ held-out clips per set:
 | ALL | 600 | 568 | 5.66 | 5.74 | 167.5 | 88.9 | 1.88x | 158.3 | 4.23 |
 
 
-568 / 600 transcripts are identical to the no-draft run. The differences are not caused by the draft:
-with an untrained draft that is never accepted (tau 1.00) 14 / 600 still differ, so they come from the
-target's multi-token verify step in this vllm-neuron build (TP=4), and the target alone already gives
-different transcripts at TP=1 vs TP=4 on 43 / 600 clips. Most are close calls (median 0.36-logit gap
-between the two tokens in the HF fp32 model), but a few have larger gaps (up to 4 logits), so they are not
-all rounding; the exact cause in the verify path is under investigation. WER uses a lowercase / punctuation normaliser (CER for Chinese and Japanese).
+568 / 600 transcripts are identical to the no-draft run. Two causes, neither in the draft:
+
+- **Argmax tie-breaking (fixed upstream-pending).** vllm-neuron's on-device greedy argmax picks among exactly
+  equal bf16 logits differently for a 1-token decode step and a 16-token verify step. With the fix
+  ([vllm-project/vllm-neuron#91](https://github.com/vllm-project/vllm-neuron/pull/91), branch
+  `jimburtoft/vllm-neuron@qwen3-asr/argmax-tie-break`), a draft that is never accepted gives 600 / 600
+  identical transcripts (14 differed before).
+- **bf16 rounding of accepted positions (expected).** Positions computed inside a multi-token verify step after
+  accepted draft tokens differ from 1-token decode by about one bf16 step (0.25-0.44 logits); when the top two
+  tokens are that close the choice can flip. With the fix: 569 / 600 identical, WER 5.719 % without the draft
+  vs 5.731 % with it, tau 4.25, mean latency 169.7 -> 88.6 ms.
+
+WER uses a lowercase / punctuation normaliser (CER for Chinese and Japanese).
 
 At TP=1 on the same branch: mean latency 335.5 -> 156.6 ms (2.14x), tau 4.26, 565 / 600 identical.
 (vllm-neuron 0.29.0.1.2.0 as released is not lossless with DFlash at TP=1 -- also for the public

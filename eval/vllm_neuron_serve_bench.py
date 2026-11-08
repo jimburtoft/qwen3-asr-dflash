@@ -88,6 +88,12 @@ def main():
     ap.add_argument("--max-num-seqs", type=int, default=1)
     ap.add_argument("--revision", default=REV)
     ap.add_argument("--draft-revision", default="")
+    ap.add_argument("--extra-neuron-config", default="{}", help="JSON merged into neuron_config (e.g. debug_logits_dir)")
+    ap.add_argument("--no-device-sampling", action="store_true", help="drop on_device_sampling_config (host sampling)")
+    ap.add_argument("--clip-ids", default="", help="comma list: only these clips (sent in this order)")
+    ap.add_argument("--logits-dir", default="", help="debug_logits_dir; dumps of request i are moved to <dir>/<i>/")
+    ap.add_argument("--block-size", type=int, default=0, help="KV cache block size (0 = server default)")
+    ap.add_argument("--max-tokens", type=int, default=0, help="max_completion_tokens for each request (0 = server default)")
     ap.add_argument("--enc-cache-blocks", type=int, default=2048,
                     help="encoder_cache_num_blocks (workaround: the auto size filled up after a few requests)")
     ap.add_argument("--port", type=int, default=8711)
@@ -103,12 +109,19 @@ def main():
            "encoder_neuron_config": {"num_encoder_input_buckets": enc_b, "encoder_attention_block_size": 128,
                                      "dp_size": args.enc_dp or args.tp,
                                      "encoder_cache_num_blocks": args.enc_cache_blocks}}
+    add["neuron_config"].update(json.loads(args.extra_neuron_config))
+    if args.logits_dir:
+        add["neuron_config"]["debug_logits_dir"] = args.logits_dir
+    if args.no_device_sampling:
+        add["neuron_config"].pop("on_device_sampling_config", None)
     cmd = ["vllm", "serve", TARGET, "--revision", args.revision,
            "--tensor-parallel-size", str(args.tp), "--dtype", "bfloat16", "--max-model-len", str(args.max_model_len),
            "--max-num-seqs", str(args.max_num_seqs), "--max-num-batched-tokens", str(args.max_model_len),
            "--limit-mm-per-prompt", json.dumps({"audio": 1}), "--no-enable-prefix-caching",
            "--mm-processor-cache-gb", "0", "--no-enable-log-requests", "--port", str(args.port),
            "--additional-config", json.dumps(add)]
+    if args.block_size:
+        cmd += ["--block-size", str(args.block_size)]
     if args.draft:
         sc = {"method": "dflash", "model": args.draft, "num_speculative_tokens": args.k}
         if args.draft_revision:
@@ -135,10 +148,16 @@ def main():
             time.sleep(10)
         startup_s = time.time() - t0
         clips = load_clips(args.clips, args.per_set, args.min_dur, args.max_dur)
+        if args.clip_ids:
+            order = args.clip_ids.split(",")
+            byid = {c["clip_id"]: c for c in clips}
+            clips = [byid[k] for k in order if k in byid]
 
         def transcribe(c):
             files = {"file": ("a.wav", wav_bytes(c["audio_pcm16"]), "audio/wav")}
             data = {"model": TARGET, "temperature": "0.0", "response_format": "json"}   # auto language ID
+            if args.max_tokens:
+                data["max_completion_tokens"] = str(args.max_tokens)
             t = time.perf_counter()
             r = requests.post(base + "/v1/audio/transcriptions", files=files, data=data, timeout=1800)
             dt = time.perf_counter() - t
@@ -147,6 +166,17 @@ def main():
 
         for c in clips[: args.warmup]:
             transcribe(c)
+
+        def move_dumps(i):
+            if not args.logits_dir:
+                return
+            import glob as _g
+            import shutil
+            dst = os.path.join(args.logits_dir, str(i))
+            os.makedirs(dst, exist_ok=True)
+            for f in _g.glob(os.path.join(args.logits_dir, "step_*")):
+                shutil.move(f, os.path.join(dst, os.path.basename(f)))
+        move_dumps("warmup")
         m0 = metrics(base)
         res = []
         if args.concurrency > 1:
@@ -171,6 +201,8 @@ def main():
         for c in clips:
             mb = metrics(base)
             text, dt = transcribe(c)
+            time.sleep(0.5 if args.logits_dir else 0)
+            move_dumps(len(res))
             ma = metrics(base)
             res.append({"clip_id": c["clip_id"], "dataset": c["dataset"], "config": c["config"], "split": c["split"],
                         "duration_s": c["duration_s"], "latency_s": dt, "text": text, "ref_text": c["ref_text"],
